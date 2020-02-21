@@ -1,3 +1,12 @@
 {
-  "message": "hello i18n !!"
+  "message": "bonjour i18n !!",
+  "nav": {
+    "about": "О нас.",
+    "services": "Наши услуги.",
+    "price": "Прайс-лист",
+    "planning": "Планирование похорон.",
+    "grieving": "Справиться с горем.",
+    "contact": "Контакт",
+    "flowers": "Доставка цветов"
+  }
 }

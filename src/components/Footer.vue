@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute dark padless="true" class="font-weight-medium">
+  <v-footer absolute dark padless class="font-weight-medium">
     <v-col class="text-center" cols="12">
       {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
     </v-col>

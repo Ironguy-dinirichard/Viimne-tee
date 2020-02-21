@@ -1,5 +1,5 @@
 <template>
-  <v-system-bar fixed="true" color="orange" height=30 style="z-index: 5">
+  <v-system-bar fixed color="orange" height=30 style="z-index: 5">
     <v-icon>mdi-gmail</v-icon>
     <span>10 unread emails</span>
     <v-spacer></v-spacer>

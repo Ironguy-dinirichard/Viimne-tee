@@ -10,17 +10,17 @@
       <span>12:30</span>
     </!--> -->
 
-    <v-app-bar fixed="true" color="deep-purple" dark dense="true" style="top:30px">
+    <v-app-bar fixed color="deep-purple" dark dense style="top:30px">
       <div>
         <v-toolbar-title>Title</v-toolbar-title>
       </div>
 
-      <v-tabs v-model="tabs" centered="true" class="">
-        <v-tab href="#one">Item One</v-tab>
+      <v-tabs centered show-arrows>
+        <v-tab href="#one">{{ $t("nav.about")}}</v-tab>
         <v-menu offset-y v-if="more.length" bottom left>
           <template v-slot:activator="{ on }">
             <v-btn text class="align-self-center mr-4" v-on="on">
-              more
+              {{ $t("nav.services")}}
               <v-icon right>mdi-menu-down</v-icon>
             </v-btn>
           </template>
@@ -31,12 +31,16 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-tab href="#two">Item Two</v-tab>
-        <v-tab href="#three">Item Three</v-tab>
+        <v-tab href="#two">{{ $t("nav.price")}}</v-tab>
+        <v-tab href="#three">{{ $t("nav.planning")}}</v-tab>
+        <v-tab href="#four">{{ $t("nav.grieving")}}</v-tab>
+        <v-tab href="#five">{{ $t("nav.contact")}}</v-tab>
         <v-tabs-slider color="pink"></v-tabs-slider>
       </v-tabs>
 
       <v-spacer></v-spacer>
+
+      <LocaleChanger />
 
       <v-app-bar-nav-icon @click="drawer = true" class="d-lg-none"></v-app-bar-nav-icon>
     </v-app-bar>
@@ -47,14 +51,15 @@
       <HelloWorld />
     </div>
 
-    <v-navigation-drawer v-model="drawer" right="true" absolute temporary style="top:30px">
+    <v-navigation-drawer v-model="drawer" right absolute temporary style="top:30px">
       <v-list nav dense>
-        <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+        <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
+            <LocaleChanger />
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>{{ $t("nav.about")}}</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
@@ -77,6 +82,7 @@
 import HelloWorld from "./components/HelloWorld";
 import Footer from "./components/Footer";
 import SystemBar from "./components/SystemBar";
+import LocaleChanger from "./components/LocaleChanger";
 
 export default {
   name: "App",
@@ -84,17 +90,14 @@ export default {
   components: {
     HelloWorld,
     Footer,
-    SystemBar
+    SystemBar,
+    LocaleChanger
   },
 
   data: () => ({
     drawer: false,
-    more: [
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me 2" }
-    ]
+    more: ["Click Me", "Click Me", "Click Me", "Click Me 2"],
+    tabs: null
   })
 };
 </script>

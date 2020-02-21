@@ -6,6 +6,22 @@ import i18n from './i18n'
 
 Vue.config.productionTip = false
 
+
+//Use beforeEach route to set the language
+router.beforeEach((to, from, next) => {
+
+  // Use the language from the routing param or default language
+  let language = to.params.lang;
+  if (!language) {
+    language = 'ee'
+  }
+
+  // Set the current language  for i18n.
+  i18n.locale = language
+  next()
+});
+
+
 new Vue({
   router,
   vuetify,

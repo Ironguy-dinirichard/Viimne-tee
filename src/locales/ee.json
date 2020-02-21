@@ -1,3 +1,12 @@
 {
-  "message": "hello i18n !!"
+  "message": "Tere i18n !!",
+  "nav": {
+    "about": "Meist",
+    "services": "Meie teenused",
+    "price": "Hinnakiri",
+    "planning": "Matuste planeerimine",
+    "grieving": "Toimetulek leinaga",
+    "contact": "Kontakt",
+    "flowers": "Saada lilled"
+  }
 }
