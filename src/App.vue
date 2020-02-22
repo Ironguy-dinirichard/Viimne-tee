@@ -1,22 +1,13 @@
 <template>
   <v-app>
-    <!-- <v-system-bar fixed="true" color="orange" height=30>
-      <v-icon>mdi-gmail</v-icon>
-      <span>10 unread emails</span>
-      <v-spacer></v-spacer>
-      <v-icon>mdi-wifi-strength-4</v-icon>
-      <v-icon>mdi-signal-cellular-outline</v-icon>
-      <v-icon>mdi-battery</v-icon>
-      <span>12:30</span>
-    </!--> -->
 
     <v-app-bar fixed color="deep-purple" dark dense style="top:30px">
       <div>
         <v-toolbar-title>Title</v-toolbar-title>
       </div>
 
-      <v-tabs centered show-arrows>
-        <v-tab href="#one">{{ $t("nav.about")}}</v-tab>
+      <v-tabs centered show-arrows class="d-none d-lg-block">
+        <v-tab href="#one" :to="`/${ $i18n.locale }/`">{{ $t("nav.about")}}</v-tab>
         <v-menu offset-y v-if="more.length" bottom left>
           <template v-slot:activator="{ on }">
             <v-btn text class="align-self-center mr-4" v-on="on">
@@ -34,21 +25,21 @@
         <v-tab href="#two">{{ $t("nav.price")}}</v-tab>
         <v-tab href="#three">{{ $t("nav.planning")}}</v-tab>
         <v-tab href="#four">{{ $t("nav.grieving")}}</v-tab>
-        <v-tab href="#five">{{ $t("nav.contact")}}</v-tab>
+        <v-tab :to="`/${ $i18n.locale }/Kontact`">{{ $t("nav.contact")}}</v-tab>
         <v-tabs-slider color="pink"></v-tabs-slider>
       </v-tabs>
 
       <v-spacer></v-spacer>
 
-      <LocaleChanger />
+      <LocaleChanger class="d-none d-lg-block" />
 
       <v-app-bar-nav-icon @click="drawer = true" class="d-lg-none"></v-app-bar-nav-icon>
     </v-app-bar>
 
     <SystemBar />
 
-    <div style="margin-top: 60px">
-      <HelloWorld />
+    <div style="margin-top: 80px">
+      <router-view />
     </div>
 
     <v-navigation-drawer v-model="drawer" right absolute temporary style="top:30px">
@@ -79,7 +70,6 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
 import Footer from "./components/Footer";
 import SystemBar from "./components/SystemBar";
 import LocaleChanger from "./components/LocaleChanger";
@@ -88,7 +78,6 @@ export default {
   name: "App",
 
   components: {
-    HelloWorld,
     Footer,
     SystemBar,
     LocaleChanger

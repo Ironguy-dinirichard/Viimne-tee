@@ -1,23 +1,41 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import i18n from "../i18n"
+
+// import Contact from '../components/Contact.vue'
+import HelloWorld from '../components/HelloWorld.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: `/${i18n.locale}`
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:"/:lang",
+    component: {
+      render (c) { return c("router-view") }
+    },
+    children: [
+      {
+        path: "/",
+        name: "Home",
+        component: HelloWorld
+      },
+      {
+        path: 'Kontact',
+        name: 'Kontact',
+        // component: Contact,
+        meta: { scrollToTop: true },
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../components/Contact.vue')
+      }
+    ]
   }
+  
 ]
 
 const router = new VueRouter({
