@@ -2,6 +2,9 @@
   <v-app>
 
     <v-app-bar fixed color="deep-purple" dark dense style="top:30px">
+
+      <v-app-bar-nav-icon @click="drawer = true" class="d-xl-none"></v-app-bar-nav-icon>
+
       <div>
         <v-toolbar-title>Title</v-toolbar-title>
       </div>
@@ -31,9 +34,55 @@
 
       <v-spacer></v-spacer>
 
-      <LocaleChanger class="d-none d-lg-block" />
+      <LocaleChanger #LocaleChanger class="d-none d-lg-block" />
 
-      <v-app-bar-nav-icon @click="drawer = true" class="d-lg-none"></v-app-bar-nav-icon>
+      <v-navigation-drawer v-model="drawer" absolute temporary light style="top:48px" height="auto">
+        <v-list nav dense>
+          <v-list-item-group active-class="deep-purple--text text--accent-4">
+            <v-list-item>
+              <LocaleChanger />
+            </v-list-item>
+
+            <v-list-item link :to="`/${ $i18n.locale }/`">
+              {{ $t("nav.about") }}
+            </v-list-item>
+
+            <!-- <v-list-item>
+              <a>{{ $t("nav.services")}}</a>
+            </v-list-item> -->
+
+            <v-list-group value="true">
+              <template v-slot:activator>
+                {{ $t("nav.services")}}
+              </template>
+
+              <v-list-item v-for="(item, i) in more" :key="i" link>
+                <v-list-item-title>
+                  {{ item }}
+                </v-list-item-title>
+              </v-list-item>
+
+            </v-list-group>
+
+            <v-list-item>
+              <a>{{ $t("nav.price")}}</a>
+            </v-list-item>
+
+            <v-list-item>
+              <a>{{ $t("nav.planning")}}</a>
+            </v-list-item>
+
+            <v-list-item>
+              <a>{{ $t("nav.grieving")}}</a>
+            </v-list-item>
+
+            <v-list-item link :to="`/${ $i18n.locale }/Kontact`">
+              {{ $t("nav.contact")}}
+            </v-list-item>
+
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
     </v-app-bar>
 
     <SystemBar />
@@ -41,28 +90,6 @@
     <div style="margin-top: 80px">
       <router-view />
     </div>
-
-    <v-navigation-drawer v-model="drawer" right absolute temporary style="top:30px">
-      <v-list nav dense>
-        <v-list-item-group active-class="deep-purple--text text--accent-4">
-          <v-list-item>
-            <LocaleChanger />
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>{{ $t("nav.about")}}</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
-          </v-list-item>
-
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
 
     <Footer />
 

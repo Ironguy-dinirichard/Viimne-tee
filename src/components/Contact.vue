@@ -4,17 +4,31 @@
       <v-card key="1" class="pa-2" outlined tile>
         Flex item 1
       </v-card>
-      <div class="d-flex justify-space-around ">
-        <form>
-          <v-text-field v-model="name" :error-messages="nameErrors" :counter="10" label="Name" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-          <v-text-field v-model="email" :error-messages="emailErrors" label="E-mail" required @input="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
-          <v-textarea v-model="message" required filled auto-grow label="Write Message" rows="4" row-height="30" shaped @input="$v.message.$touch()" @blur="$v.message.$touch()"></v-textarea>
-          <div class="error" v-if="!$v.message.minLength">Message must have at least {{ $v.message.$params.minLength.min }} characters.</div>
 
-          <v-btn class="mr-4" @click="submit">submit</v-btn>
-          <v-btn @click="clear">clear</v-btn>
-        </form>
-      </div>
+      <b-row>
+        <b-col col lg="5" class=" px-sm-12 mx-xs-12" style="padding-left: 50px; padding-right: 40px;">
+          <form>
+            <v-text-field v-model="name" :error-messages="nameErrors" :counter="10" label="Name" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
+            <v-text-field v-model="email" :error-messages="emailErrors" label="E-mail" required @input="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
+            <v-textarea v-model="message" required filled auto-grow label="Write Message" rows="6" row-height="30" shaped @input="$v.message.$touch()" @blur="$v.message.$touch()"></v-textarea>
+            <div class="error" v-if="!$v.message.minLength">Message must have at least {{ $v.message.$params.minLength.min }} characters.</div>
+
+            <v-btn class="mr-4" @click="submit">submit</v-btn>
+            <v-btn @click="clear">clear</v-btn>
+          </form>
+        </b-col>
+        <b-col cols="12" lg="auto"></b-col>
+        <b-col cols="12" lg="auto" class="px-sm-12 px-xs-12" style="padding-left: 40px; padding-right: 40px;">
+          <div id="map" style="min-width: 450px; width: auto;">
+            <google-map />
+          </div>
+        </b-col>
+      </b-row>
+
+      <v-card key="1" class="pa-2" outlined tile>
+        Flex item 1
+      </v-card>
+
     </div>
   </div>
 </template>
@@ -28,6 +42,10 @@ import {
   minLength,
   email
 } from "vuelidate/lib/validators";
+import GoogleMap from "./GoogleMap";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
   mixins: [validationMixin],
@@ -95,6 +113,9 @@ export default {
       this.email = "";
       this.message = "";
     }
+  },
+  components: {
+    GoogleMap
   }
 };
 </script>

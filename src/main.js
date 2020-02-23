@@ -1,16 +1,22 @@
+import '@babel/polyfill'
+import 'mutationobserver-shim'
 import Vue from 'vue'
+import './plugins/bootstrap-vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify';
 import i18n from './i18n'
 import Vuelidate from 'vuelidate'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import { LayoutPlugin } from "bootstrap-vue"
+
 
 Vue.use(Vuelidate)
+Vue.use(LayoutPlugin)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'YOUR_API_TOKEN',
+    key: 'AIzaSyCiOiRU7nUcU_HGfe9zlch2-NBGopPGGNM',
     libraries: 'places', // This is required if you use the Autocomplete plugin
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'
@@ -31,7 +37,7 @@ Vue.use(VueGoogleMaps, {
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
   // installComponents: true,
-})
+});
 
 Vue.config.productionTip = false
 
